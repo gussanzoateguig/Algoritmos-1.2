@@ -1,0 +1,69 @@
+//Gustavo Anzoategui
+#include <iostream>
+using namespace std;
+
+int sumaNimp (int n){
+	int i, s=0;
+	for(i=1;i<=n;i++){
+		if((i%2)!=0){
+			s=s+i;
+		}
+	}
+	return s;
+}
+int sumaNimp2 (int n){
+	int i=1, s=0;
+	while(i<=n){
+		if((i%2)!=0){
+			s=s+i;
+		}
+		i++;
+	}
+	return s;
+}
+
+int generar (int n){
+	int i, r=-1;
+	for (i=1;i<=n;i++){
+		r=r+2;
+	}
+	return r;
+}
+int SumdNimp (int n) {
+	int i, r=0, x;
+	for (i=1;i<=n;i++){
+		x=generar (i);
+		r=r+x;
+	}
+	return r;
+}
+void sumaw (){
+	int i=1 ,r=0,  n , s=0;
+	cout<<"hola";
+	while(r==0){
+		cout<<"Ingrese N:";cin>> n;
+		if(n<0){
+			r=1;
+		}
+		while(i<=n){
+			if((i%2)!=0){
+				s=s+i;
+			}
+			i++;
+		}
+		cout<<"La Suma es: "<<s<<endl;
+		s=0;
+		i=0;
+	}
+}
+int main (){
+	int n,r, s;
+	cout<<"Ingrese el numero N:";
+	cin>>n;
+	r=sumaNimp (n);
+	cout<<"La suma de los impares es :"<<r<<endl;
+	s=SumdNimp  (n);
+	cout<<"La suma de los N impares es :"<<s<<endl;
+	sumaw ();
+	return 0;
+}
