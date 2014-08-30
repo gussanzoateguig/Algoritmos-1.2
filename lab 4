@@ -1,0 +1,139 @@
+// Laboratorio 4 Gustavo Anzoategui
+#include <iostream>
+#include "stdlib.h"
+
+using namespace std;
+void cargarvec (int V[], int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<"Digite V["<<i<<"] : ";
+		cin>>V[i];
+	}
+}
+void mostrar (int V[], int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<endl<<"V["<<i<<"] : "<<V[i];
+	}
+}
+void invertir (int V[], int n){
+	int i, aux= NULL;
+	for (i=0;i<(n/2);i++){
+		aux=V[i];
+		V[i]=V[n-1-i];
+		V[n-1-i]=aux;
+	}
+}
+void descente (int V[], int n){
+	int temp= NULL;
+	for (int j=n-1;j>0;j--) {
+		for (int i=0;i<j;i++) {
+			if (V[i] < V[i+1]) {
+				temp = V[i];
+				V[i] = V[i+1];
+				V[i+1] = temp;
+			}
+		}
+	} 
+}
+void busLin(int V[], int n, int x){
+	int r=0;
+	for (int i=0; i< n; i++) {
+        if (x == V[i]) {
+            cout << "Se encuentra en la posicion " << i + 1 << endl;
+			r++;
+        }
+   }
+	if (r==0){
+		cout<<"En este vector no hay el numero que busca"<<endl;
+	}
+}
+ 
+bool binario (int V[], int x, int n){
+    int first = n-1; bool k =false;
+    int middle;
+    int last =0; 
+    while (first >= last) {
+        middle = (first + last)/2;
+        if (x == V[middle]) {
+            cout << "Se encuentra en la posición " << middle + 1 << endl;
+			k=true;
+            return k;
+        } else {
+            if (V[middle] < x) {
+                first = middle - 1;
+            } else {
+                last = middle + 1;
+            }
+        }
+    }
+    return k;
+}
+void main (){
+	int V[100], n=0 , op, x= NULL;
+	do{
+		system ("cls");
+		cout<<"----------------- M E N U -----------------"<<endl;
+		cout<<endl<<"1.- Cargar Vector";
+		cout<<endl<<"2.- Mostrar Vector";
+		cout<<endl<<"3.- Invertir Vector";
+		cout<<endl<<"4.- Clasificar Vector (Descendentemente)";
+		cout<<endl<<"5.- Busqueda Binaria";
+		cout<<endl<<"6.- Busqueda Lineal";
+		cout<<endl<<"0.- Salir";
+		cout<<endl<<"Digite opcion : ";
+		cin>>op;
+		switch (op){
+			case 1: 
+				{system ("cls");
+				do{cout<<"Digite el tamaño del vector: ";
+				cin>>n;}while(n<0 || n>99);
+				cargarvec (V,n);
+				system ("pause");
+				break;
+				}
+
+			case 2:
+				{system ("cls");
+				mostrar (V,n);
+				system ("pause");
+				break;
+				}
+
+			case 3: 
+				{system ("cls");
+				invertir (V,n);
+				mostrar(V,n);
+				system("pause");
+				break;
+				}
+			case 4:
+				{system ("cls");
+				descente (V,n);
+				mostrar (V,n);
+				system ("pause");
+				break;
+				}
+			case 5:
+				{system ("cls");
+				cout<<"Ingrese el numero de busqueda: ";
+				cin>>x;
+				if(binario (V, x, n)==false){
+					cout<<"No Existe el valor en el vector"<<endl;
+				}
+				system ("pause");
+				break;
+				}
+			case 6:
+				{system ("cls");
+				cout<<"Ingrese el numero de busqueda: ";
+				cin>>x;
+				 busLin(V, n, x);
+				system ("pause");
+				break;
+				}
+
+		}
+	}while (op>0);
+}
+
