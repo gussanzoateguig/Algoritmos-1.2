@@ -1,0 +1,44 @@
+//Gustavo Anzoategui
+
+#include <iostream>
+#define N 100
+using namespace std;
+
+struct lab {
+	int vecelem [N];
+};
+
+void mostrar (lab V[], int n, int m){
+	int i , j ;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<V[i].vecelem[j];
+			cout<<" ";
+		}
+		cout<<"		";
+	}
+
+}
+
+void sumaAnt (lab V[], int n, int m){
+	int i, j, ant=-1, sig=1, s;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			s=ant+sig;
+			ant=sig;
+			sig=s;
+			V[i].vecelem[j]=s;
+		}
+	}
+}
+
+void main (){
+	int n, m; lab V[N];
+	cout<<"Ingrese el tamanho del vector de vectores ";
+	cin>>n;
+	cout<<"Ingrese el tamnho del vector interno";
+	cin>>m;
+	sumaAnt(V, n, m);
+	mostrar(V, n, m);
+	cout<<endl;
+}
